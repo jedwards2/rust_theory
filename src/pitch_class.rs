@@ -1,5 +1,6 @@
 use crate::NoteName;
 use core::ops::Add;
+use std::fmt;
 
 pub struct PitchClass {
     pub value: i32,
@@ -16,6 +17,11 @@ impl PitchClass {
         }
         self.value = self.value % 12
     }
+
+    pub fn transpose(&mut self, num: i32) {
+        self.value += num;
+        self.normalize();
+    }
 }
 
 impl Add for PitchClass {
@@ -28,5 +34,11 @@ impl Add for PitchClass {
 
         class.normalize();
         class
+    }
+}
+
+impl fmt::Display for PitchClass {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "PitchClass: {}", self.value)
     }
 }

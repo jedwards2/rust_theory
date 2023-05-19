@@ -1,4 +1,6 @@
+use crate::note_set::NoteSet;
 use crate::pitch_class::PitchClass;
+mod note_set;
 mod pitch_class;
 
 pub enum NoteName {
@@ -17,8 +19,15 @@ pub enum NoteName {
 }
 
 fn main() {
-    let e = PitchClass::new(NoteName::C);
-    // let a = PitchClass::new(NoteName::B);
+    let d = PitchClass::new(NoteName::D);
+    let a = PitchClass::new(NoteName::A);
 
-    println!("VALUE: {}", e.value);
+    let bosh = NoteSet { set: vec![d, a] };
+
+    let new_set = bosh.get_transposed_set(4);
+
+    new_set.print_set();
+    let new_set2 = bosh.get_set_transposed_to_0();
+    bosh.print_set();
+    new_set2.print_set();
 }
