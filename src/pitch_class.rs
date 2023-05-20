@@ -2,6 +2,7 @@ use crate::NoteName;
 use core::ops::Add;
 use std::fmt;
 
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct PitchClass {
     pub value: i32,
 }
