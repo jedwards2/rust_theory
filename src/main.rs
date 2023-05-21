@@ -11,7 +11,7 @@ fn main() {
         set: vec![d, a, d2],
     };
 
-    let mut new_set = bosh.get_transposed(0);
+    let new_set = bosh.get_transposed(0);
 
     // new_set.print_set();
     // let new_set2 = bosh.get_set_transposed_to_0();

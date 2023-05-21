@@ -2,7 +2,7 @@ use crate::NoteName;
 use core::ops::Add;
 use std::fmt;
 
-#[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord, Debug)]
 pub struct PitchClass {
     pub value: i32,
 }
@@ -29,12 +29,12 @@ impl Add for PitchClass {
     type Output = PitchClass;
 
     fn add(self, other: Self) -> Self::Output {
-        let mut class = PitchClass {
+        let mut pc = PitchClass {
             value: self.value + other.value,
         };
 
-        class.normalize();
-        class
+        pc.normalize();
+        pc
     }
 }
 

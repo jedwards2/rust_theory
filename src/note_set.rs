@@ -1,6 +1,6 @@
 use crate::pitch_class::PitchClass;
 
-#[derive(Clone)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct NoteSet {
     pub set: Vec<PitchClass>,
 }
