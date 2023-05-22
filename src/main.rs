@@ -5,16 +5,18 @@ use music_test::NoteName;
 
 fn main() {
     let d = PitchClass::new(NoteName::D);
+    let gb = PitchClass::new(NoteName::Gb);
     let a = PitchClass::new(NoteName::A);
-    let d2 = PitchClass::new(NoteName::D);
 
     let _bosh = NoteSet {
-        set: vec![d, a, d2],
+        set: vec![d, gb, a],
     };
-    let d_new = PitchClass::new(NoteName::D);
-    let size_vec = vec![2, 2, 2];
-    let chord = Chord::new(d_new, ChordType::Custom(size_vec));
+    // let d_new = PitchClass::new(NoteName::D);
+    // let size_vec = vec![2, 2, 2];
+    let chord = Chord { pitch_list: _bosh };
     chord.print_chord();
+    let new = chord.invert();
+    new.print_chord();
     // let new_set = bosh.get_transposed(0);
 
     // new_set.print_set();

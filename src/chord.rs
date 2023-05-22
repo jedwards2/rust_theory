@@ -1,41 +1,27 @@
+use crate::note_set::NoteSet;
 use crate::pitch_class::PitchClass;
 use std::fmt;
 
 #[derive(Debug)]
 pub struct Chord {
-    root: PitchClass,
-    construction: ChordType,
-    transformation_list: Vec<i32>,
-    pitch_list: Vec<PitchClass>,
+    pub pitch_list: NoteSet,
 }
 
 impl Chord {
-    pub fn new(root: PitchClass, chord_type: ChordType) -> Chord {
-        let notes = match_chord(&chord_type);
-
-        return Chord {
-            root: root.clone(),
-            construction: chord_type,
-            transformation_list: notes.clone(),
-            pitch_list: create_note_list(notes, root),
+    pub fn invert(&self) -> Chord {
+        let mut new_set = self.pitch_list.set.clone();
+        let first = new_set.first().unwrap();
+        new_set.push(first.clone());
+        new_set.remove(0);
+        let final_set = NoteSet { set: new_set };
+        let chord = Chord {
+            pitch_list: final_set,
         };
-    }
-
-    fn invert(&self) -> Chord {
-        let new_vec = self.transformation_list.clone();
-        let c = Chord {
-            root: self.pitch_list[1].clone(),
-            construction: ChordType::Custom(new_vec.clone()),
-            transformation_list: new_vec.clone(),
-            pitch_list: create_note_list(new_vec, self.pitch_list[1].clone()),
-        };
-        c
+        chord
     }
 
     pub fn print_chord(&self) {
-        println!("Root: {}", self.root);
-        println!("Construction: {}", self.construction);
-        for i in self.pitch_list.iter() {
+        for i in self.pitch_list.set.iter() {
             i.pretty_print();
         }
     }
