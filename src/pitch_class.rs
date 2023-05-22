@@ -23,6 +23,13 @@ impl PitchClass {
         self.value += num;
         self.normalize();
     }
+    pub fn pretty_print(&self) {
+        let name_vec = vec![
+            "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",
+        ];
+        let name = name_vec[self.value as usize];
+        println!("{}", name);
+    }
 }
 
 impl Add for PitchClass {
