@@ -13,8 +13,10 @@ fn main() {
     };
     // let d_new = PitchClass::new(NoteName::D);
     // let size_vec = vec![2, 2, 2];
-    // let chord = Chord { pitch_list: _bosh };
-    // chord.print_chord();
+    let chord = Chord {
+        pitch_list: bosh.clone(),
+    };
+    chord.print_chord();
     // let new = chord.invert();
     // new.print_chord();
     bosh.print_set();
